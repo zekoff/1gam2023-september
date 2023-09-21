@@ -5,7 +5,56 @@
 			"name": "Layer 0",
 			"overriden": 0,
 			"subLayers": [],
-			"instances": [],
+			"instances": [
+				{
+					"type": "Player",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 3,
+					"instanceVariables": {},
+					"behaviors": {
+						"ScrollTo": {
+							"properties": {
+								"enabled": true
+							}
+						},
+						"TileMovement": {
+							"properties": {
+								"grid-width": 100,
+								"grid-height": 100,
+								"grid-offset-x": 0,
+								"grid-offset-y": 0,
+								"speed-x": 500,
+								"speed-y": 500,
+								"enabled": true,
+								"default-controls": true,
+								"isometric": false
+							}
+						}
+					},
+					"world": {
+						"x": 336,
+						"y": 456,
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				}
+			],
 			"sid": 283465227915472,
 			"effectTypes": [],
 			"isInitiallyVisible": true,
@@ -36,7 +85,18 @@
 		}
 	],
 	"sid": 728551007604383,
-	"nonworld-instances": [],
+	"nonworld-instances": [
+		{
+			"type": "Farm",
+			"properties": {
+				"width": 5,
+				"height": 8,
+				"depth": 1
+			},
+			"uid": 2,
+			"instanceVariables": {}
+		}
+	],
 	"effectTypes": [],
 	"width": 1440,
 	"height": 2560,

@@ -1,5 +1,201 @@
 {
 	"name": "Test Events",
-	"events": [],
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "FARM_HEIGHT",
+			"type": "number",
+			"initialValue": "8",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 419086589808478
+		},
+		{
+			"eventType": "variable",
+			"name": "TILE_SIZE",
+			"type": "number",
+			"initialValue": "100",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 839963219401464
+		},
+		{
+			"eventType": "variable",
+			"name": "FARM_WIDTH",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 540026560576510
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 930276553992849
+				}
+			],
+			"actions": [
+				{
+					"id": "set-size",
+					"objectClass": "Farm",
+					"sid": 396514682093797,
+					"parameters": {
+						"width": "FARM_WIDTH",
+						"height": "FARM_HEIGHT",
+						"depth": "1"
+					}
+				},
+				{
+					"id": "set-size",
+					"objectClass": "Player",
+					"sid": 198268928509811,
+					"parameters": {
+						"width": "TILE_SIZE / 2",
+						"height": "TILE_SIZE / 2"
+					}
+				}
+			],
+			"sid": 421637709431748,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for",
+							"objectClass": "System",
+							"sid": 733016376706713,
+							"parameters": {
+								"name": "\"x\"",
+								"start-index": "1",
+								"end-index": "FARM_WIDTH"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 820625803950804,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for",
+									"objectClass": "System",
+									"sid": 329647940481167,
+									"parameters": {
+										"name": "\"y\"",
+										"start-index": "1",
+										"end-index": "FARM_HEIGHT"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-at-xy",
+									"objectClass": "Farm",
+									"sid": 193531192962215,
+									"parameters": {
+										"x": "loopindex(\"x\")",
+										"y": "loopindex(\"y\")",
+										"value": "choose(\"Dirt\", \"Tilled\", \"Rock\", \"Tomato\", \"Corn\")"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 622673508765177,
+									"parameters": {
+										"object-to-create": "Tile",
+										"layer": "0",
+										"x": "loopindex(\"x\") * TILE_SIZE",
+										"y": "loopindex(\"y\") * TILE_SIZE",
+										"create-hierarchy": false,
+										"template-name": "\"\""
+									}
+								},
+								{
+									"id": "set-size",
+									"objectClass": "Tile",
+									"sid": 308404099323042,
+									"parameters": {
+										"width": "TILE_SIZE",
+										"height": "TILE_SIZE"
+									}
+								},
+								{
+									"id": "set-animation",
+									"objectClass": "Tile",
+									"sid": 611192008235284,
+									"parameters": {
+										"animation": "Farm.At(loopindex(\"x\"), loopindex(\"y\"))",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 424971451013074
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "move-to-top",
+							"objectClass": "Player",
+							"sid": 970906025198946
+						}
+					],
+					"sid": 621628255520615
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 109146384685864,
+					"parameters": {
+						"key": 32
+					}
+				},
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Player",
+					"sid": 916111116172297,
+					"parameters": {
+						"object": "Tile"
+					}
+				},
+				{
+					"id": "is-animation-playing",
+					"objectClass": "Tile",
+					"sid": 640930381233399,
+					"parameters": {
+						"animation": "\"Dirt\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Tile",
+					"sid": 489831716875182,
+					"parameters": {
+						"animation": "\"Tilled\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 167994704251715
+		}
+	],
 	"sid": 846063937609139
 }
