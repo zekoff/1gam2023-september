@@ -3,7 +3,36 @@
 	"plugin-id": "Sprite",
 	"sid": 924962236159252,
 	"isGlobal": false,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "cropsHarvested",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 557259589256481
+		},
+		{
+			"name": "toolUses",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 275798830480452
+		},
+		{
+			"name": "handUses",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 968412531325300
+		},
+		{
+			"name": "waterUses",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 796747002276667
+		}
+	],
 	"behaviorTypes": [
 		{
 			"behaviorId": "scrollto",

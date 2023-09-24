@@ -22,8 +22,22 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Mouse",
+			"name": "Mouse",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "Sprite",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Text",
+			"name": "Text",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -31,6 +45,13 @@
 			"type": "behavior",
 			"id": "TileMovement",
 			"name": "Tile movement",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Tween",
+			"name": "Tween",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -48,7 +69,11 @@
 			"Tile",
 			"Farm",
 			"Player",
-			"Keyboard"
+			"Keyboard",
+			"HUD",
+			"Mouse",
+			"Calendar",
+			"Mask"
 		],
 		"subfolders": []
 	},
