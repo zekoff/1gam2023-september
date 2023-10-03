@@ -171,31 +171,455 @@
 			"eventType": "block",
 			"conditions": [
 				{
-					"id": "on-key-pressed",
+					"id": "on-any-key-pressed",
 					"objectClass": "Keyboard",
-					"sid": 109146384685864,
-					"parameters": {
-						"key": 32
-					}
+					"sid": 499652847482063
 				},
 				{
 					"id": "is-moving",
 					"objectClass": "Player",
-					"sid": 181471519568609,
+					"sid": 191041665442220,
 					"behaviorType": "TileMovement",
 					"isInverted": true
 				},
 				{
 					"id": "is-overlapping-another-object",
 					"objectClass": "Player",
-					"sid": 916111116172297,
+					"sid": 446611024516549,
 					"parameters": {
 						"object": "Tile"
 					}
 				}
 			],
 			"actions": [],
-			"sid": 167994704251715,
+			"sid": 943111706544085,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 579453662342714,
+							"parameters": {
+								"key": 84
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 566427975126555,
+							"parameters": {
+								"instance-variable": "toolUses",
+								"comparison": 4,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"customAction": "UseTool",
+							"objectClass": "Tile",
+							"sid": 285803362250789
+						}
+					],
+					"sid": 397987616591864
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 982096131503453,
+							"parameters": {
+								"key": 72
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 549525804181334,
+							"parameters": {
+								"instance-variable": "handUses",
+								"comparison": 4,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"customAction": "UseHand",
+							"objectClass": "Tile",
+							"sid": 611720209531818
+						}
+					],
+					"sid": 447654276081347
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 187215537264262,
+							"parameters": {
+								"key": 87
+							}
+						}
+					],
+					"actions": [
+						{
+							"customAction": "UseWater",
+							"objectClass": "Tile",
+							"sid": 322304512853657
+						}
+					],
+					"sid": 947593703960731
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 793446471076701,
+							"parameters": {
+								"key": 65
+							}
+						}
+					],
+					"actions": [
+						{
+							"customAction": "AdvanceDay",
+							"objectClass": "Calendar",
+							"sid": 849376914964208
+						}
+					],
+					"sid": 242960846715713
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 630802082402052
+				}
+			],
+			"actions": [
+				{
+					"id": "set-text",
+					"objectClass": "HUD",
+					"sid": 830355462799048,
+					"parameters": {
+						"text": "\"Crops Harvested: \" & Player.cropsHarvested & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 532839836921419,
+					"parameters": {
+						"text": "\"Day: \" & Calendar.Day & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 167134189354111,
+					"disabled": true,
+					"parameters": {
+						"text": "\"MouseX: \" & round(Mouse.X) & \", MouseY: \" & round(Mouse.Y) & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 750197923700598,
+					"parameters": {
+						"text": "\"Tool Uses: \" & Player.toolUses & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 611686469939449,
+					"parameters": {
+						"text": "\"Hand Uses: \" & Player.handUses & newline"
+					}
+				}
+			],
+			"sid": 737599238622140,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 742294659514455,
+							"parameters": {
+								"object": "Tile"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 745884511930906,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-boolean-instance-variable-set",
+									"objectClass": "Tile",
+									"sid": 593589882610667,
+									"parameters": {
+										"instance-variable": "watered"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "Tile",
+									"sid": 877217044045623,
+									"parameters": {
+										"color": "rgbEx(70, 70, 100)"
+									}
+								}
+							],
+							"sid": 596811464289682
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 174011252986293
+								}
+							],
+							"actions": [
+								{
+									"id": "set-default-color",
+									"objectClass": "Tile",
+									"sid": 387773563291041,
+									"parameters": {
+										"color": "rgbEx(100, 100, 100)"
+									}
+								}
+							],
+							"sid": 888468263271267
+						}
+					]
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "AdvanceDay",
+			"objectClass": "Calendar",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-ignoring-input",
+					"objectClass": "Player",
+					"sid": 362870228620341,
+					"behaviorType": "TileMovement",
+					"parameters": {
+						"input": "start-ignoring"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "Mask",
+					"sid": 759557459720148,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"\"",
+						"property": "offsetOpacity",
+						"end-value": "100",
+						"time": "1",
+						"ease": "default",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 102013120746182
+				}
+			],
+			"sid": 372135097476189,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 868064360796122,
+							"parameters": {
+								"object": "Tile"
+							}
+						},
+						{
+							"id": "is-animation-playing",
+							"objectClass": "Tile",
+							"sid": 233783775055619,
+							"parameters": {
+								"animation": "\"Seeded\""
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Tile",
+							"sid": 747723781707345,
+							"parameters": {
+								"instance-variable": "watered"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "TODO: grow crops"
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Tile",
+							"sid": 528190847644291,
+							"parameters": {
+								"animation": "choose(\"Tomato\", \"Corn\")",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 489349219075368
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 387846236687955,
+							"parameters": {
+								"object": "Tile"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Tile",
+							"sid": 134600076977083,
+							"parameters": {
+								"instance-variable": "watered",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 905463655571326
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "TODO: roll dice"
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 132240852550644,
+							"parameters": {
+								"instance-variable": "toolUses",
+								"value": "floor(random(3)) + 1"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 983082814297465,
+							"parameters": {
+								"instance-variable": "handUses",
+								"value": "floor(random(3)) + 1"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Calendar",
+							"sid": 255425222913351,
+							"parameters": {
+								"instance-variable": "Day",
+								"value": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "Mask",
+							"sid": 999064914774406,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "1",
+								"ease": "default",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 555649062407759
+						},
+						{
+							"id": "set-ignoring-input",
+							"objectClass": "Player",
+							"sid": 854759047078544,
+							"behaviorType": "TileMovement",
+							"parameters": {
+								"input": "stop-ignoring"
+							}
+						}
+					],
+					"sid": 297009316222832
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "UseTool",
+			"objectClass": "Tile",
+			"functionDescription": "Use a Tool action on a tile.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 735507153780233,
 			"children": [
 				{
 					"eventType": "block",
@@ -289,31 +713,33 @@
 						}
 					],
 					"sid": 383248179177208
-				},
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "UseHand",
+			"objectClass": "Tile",
+			"functionDescription": "Use a Hand action on a tile.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 225606866550626,
+			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 263005476333960
-						},
-						{
 							"id": "is-animation-playing",
 							"objectClass": "Tile",
-							"sid": 969476944670090,
+							"sid": 959692631333512,
 							"parameters": {
 								"animation": "\"Tilled\""
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 693346124943119,
-							"parameters": {
-								"instance-variable": "handUses",
-								"comparison": 4,
-								"value": "0"
 							}
 						}
 					],
@@ -321,7 +747,7 @@
 						{
 							"id": "subtract-from-instvar",
 							"objectClass": "Player",
-							"sid": 175981222463285,
+							"sid": 161652794427709,
 							"parameters": {
 								"instance-variable": "handUses",
 								"value": "1"
@@ -330,14 +756,14 @@
 						{
 							"id": "set-animation",
 							"objectClass": "Tile",
-							"sid": 308517780410682,
+							"sid": 468949939170440,
 							"parameters": {
-								"animation": "choose(\"Tomato\", \"Corn\")",
+								"animation": "\"Seeded\"",
 								"from": "beginning"
 							}
 						}
 					],
-					"sid": 518348913219848
+					"sid": 579498408270517
 				},
 				{
 					"eventType": "block",
@@ -345,21 +771,11 @@
 						{
 							"id": "else",
 							"objectClass": "System",
-							"sid": 864700906231734
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 893441071259382,
-							"parameters": {
-								"instance-variable": "handUses",
-								"comparison": 4,
-								"value": "0"
-							}
+							"sid": 945101520461719
 						}
 					],
 					"actions": [],
-					"sid": 147372372602030,
+					"sid": 776651791592302,
 					"children": [
 						{
 							"eventType": "block",
@@ -367,7 +783,7 @@
 								{
 									"id": "is-animation-playing",
 									"objectClass": "Tile",
-									"sid": 969504800248086,
+									"sid": 225063790200137,
 									"parameters": {
 										"animation": "\"Corn\""
 									}
@@ -375,7 +791,7 @@
 								{
 									"id": "is-animation-playing",
 									"objectClass": "Tile",
-									"sid": 289556016179740,
+									"sid": 210627727811355,
 									"parameters": {
 										"animation": "\"Tomato\""
 									}
@@ -385,7 +801,7 @@
 								{
 									"id": "subtract-from-instvar",
 									"objectClass": "Player",
-									"sid": 440809452159946,
+									"sid": 353545739476814,
 									"parameters": {
 										"instance-variable": "handUses",
 										"value": "1"
@@ -394,7 +810,7 @@
 								{
 									"id": "set-animation",
 									"objectClass": "Tile",
-									"sid": 177676051879142,
+									"sid": 321883377289899,
 									"parameters": {
 										"animation": "\"Dirt\"",
 										"from": "beginning"
@@ -403,14 +819,14 @@
 								{
 									"id": "add-to-instvar",
 									"objectClass": "Player",
-									"sid": 357303447703865,
+									"sid": 405907745627792,
 									"parameters": {
 										"instance-variable": "cropsHarvested",
 										"value": "1"
 									}
 								}
 							],
-							"sid": 656775276045446,
+							"sid": 232640093475935,
 							"isOrBlock": true
 						}
 					]
@@ -418,85 +834,10 @@
 			]
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 955152439493801,
-					"parameters": {
-						"key": 65
-					}
-				}
-			],
-			"actions": [
-				{
-					"customAction": "AdvanceDay",
-					"objectClass": "Calendar",
-					"sid": 260142074316262
-				}
-			],
-			"sid": 836941563822633
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "every-tick",
-					"objectClass": "System",
-					"sid": 630802082402052
-				}
-			],
-			"actions": [
-				{
-					"id": "set-text",
-					"objectClass": "HUD",
-					"sid": 830355462799048,
-					"parameters": {
-						"text": "\"Crops Harvested: \" & Player.cropsHarvested & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
-					"sid": 532839836921419,
-					"parameters": {
-						"text": "\"Day: \" & Calendar.Day & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
-					"sid": 167134189354111,
-					"disabled": true,
-					"parameters": {
-						"text": "\"MouseX: \" & round(Mouse.X) & \", MouseY: \" & round(Mouse.Y) & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
-					"sid": 750197923700598,
-					"parameters": {
-						"text": "\"Tool Uses: \" & Player.toolUses & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
-					"sid": 611686469939449,
-					"parameters": {
-						"text": "\"Hand Uses: \" & Player.handUses & newline"
-					}
-				}
-			],
-			"sid": 737599238622140
-		},
-		{
 			"aceType": "action",
-			"aceName": "AdvanceDay",
-			"objectClass": "Calendar",
-			"functionDescription": "",
+			"aceName": "UseWater",
+			"objectClass": "Tile",
+			"functionDescription": "Use a Water action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
 			"functionCopyPicked": false,
@@ -504,106 +845,44 @@
 			"functionParameters": [],
 			"eventType": "custom-ace-block",
 			"conditions": [],
-			"actions": [
+			"actions": [],
+			"sid": 745287016156068,
+			"children": [
 				{
-					"id": "set-ignoring-input",
-					"objectClass": "Player",
-					"sid": 362870228620341,
-					"behaviorType": "TileMovement",
-					"parameters": {
-						"input": "start-ignoring"
-					}
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "Mask",
-					"sid": 759557459720148,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "\"\"",
-						"property": "offsetOpacity",
-						"end-value": "100",
-						"time": "1",
-						"ease": "default",
-						"destroy-on-complete": "no",
-						"loop": "no",
-						"ping-pong": "no",
-						"repeat-count": "1"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 102013120746182
-				},
-				{
-					"type": "comment",
-					"text": "TODO: grow crops"
-				},
-				{
-					"type": "comment",
-					"text": "TODO: roll dice"
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "Player",
-					"sid": 279770296591165,
-					"parameters": {
-						"instance-variable": "toolUses",
-						"value": "floor(random(3)) + 1"
-					}
-				},
-				{
-					"id": "set-instvar-value",
-					"objectClass": "Player",
-					"sid": 730874935512431,
-					"parameters": {
-						"instance-variable": "handUses",
-						"value": "floor(random(3)) + 1"
-					}
-				},
-				{
-					"id": "add-to-instvar",
-					"objectClass": "Calendar",
-					"sid": 925413455112304,
-					"parameters": {
-						"instance-variable": "Day",
-						"value": "1"
-					}
-				},
-				{
-					"id": "tween-one-property",
-					"objectClass": "Mask",
-					"sid": 637395346282473,
-					"behaviorType": "Tween",
-					"parameters": {
-						"tags": "\"\"",
-						"property": "offsetOpacity",
-						"end-value": "0",
-						"time": "1",
-						"ease": "default",
-						"destroy-on-complete": "no",
-						"loop": "no",
-						"ping-pong": "no",
-						"repeat-count": "1"
-					}
-				},
-				{
-					"id": "wait-for-previous-actions",
-					"objectClass": "System",
-					"sid": 941415532410560
-				},
-				{
-					"id": "set-ignoring-input",
-					"objectClass": "Player",
-					"sid": 479286178329222,
-					"behaviorType": "TileMovement",
-					"parameters": {
-						"input": "stop-ignoring"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "Tile",
+							"sid": 287223909543768,
+							"parameters": {
+								"animation": "\"Seeded\""
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Tile",
+							"sid": 462885352507808,
+							"parameters": {
+								"instance-variable": "watered"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Tile",
+							"sid": 816240659599033,
+							"parameters": {
+								"instance-variable": "watered",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 637667459231527
 				}
-			],
-			"sid": 372135097476189
+			]
 		}
 	],
 	"sid": 846063937609139

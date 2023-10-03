@@ -3,7 +3,15 @@
 	"plugin-id": "Sprite",
 	"sid": 323677736306197,
 	"isGlobal": false,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "watered",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 578080582993390
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -42,7 +50,7 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 432069,
+						"imageSpriteId": 7409479,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
@@ -122,6 +130,30 @@
 				],
 				"sid": 877561874039915,
 				"name": "Rock",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			},
+			{
+				"frames": [
+					{
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 2727913,
+						"useCollisionPoly": true,
+						"duration": 1,
+						"tag": ""
+					}
+				],
+				"sid": 718834740580006,
+				"name": "Seeded",
 				"isLooping": false,
 				"isPingPong": false,
 				"repeatCount": 1,
