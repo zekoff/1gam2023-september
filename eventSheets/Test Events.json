@@ -71,6 +71,17 @@
 						"x-offset": "0",
 						"y-offset": "0"
 					}
+				},
+				{
+					"id": "set-grid-position",
+					"objectClass": "Player",
+					"sid": 555827714238169,
+					"behaviorType": "TileMovement",
+					"parameters": {
+						"x": "round(FARM_WIDTH / 2)",
+						"y": "round(FARM_HEIGHT / 2)",
+						"instant": "instant"
+					}
 				}
 			],
 			"sid": 421637709431748,
@@ -122,7 +133,7 @@
 									"objectClass": "System",
 									"sid": 622673508765177,
 									"parameters": {
-										"object-to-create": "Tile",
+										"object-to-create": "Plot",
 										"layer": "0",
 										"x": "loopindex(\"x\") * TILE_SIZE",
 										"y": "loopindex(\"y\") * TILE_SIZE",
@@ -132,7 +143,7 @@
 								},
 								{
 									"id": "set-size",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 308404099323042,
 									"parameters": {
 										"width": "TILE_SIZE",
@@ -141,7 +152,7 @@
 								},
 								{
 									"id": "set-animation",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 611192008235284,
 									"parameters": {
 										"animation": "Farm.At(loopindex(\"x\"), loopindex(\"y\"))",
@@ -187,7 +198,7 @@
 					"objectClass": "Player",
 					"sid": 446611024516549,
 					"parameters": {
-						"object": "Tile"
+						"object": "Plot"
 					}
 				}
 			],
@@ -219,7 +230,7 @@
 					"actions": [
 						{
 							"customAction": "UseTool",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 285803362250789
 						}
 					],
@@ -250,7 +261,7 @@
 					"actions": [
 						{
 							"customAction": "UseHand",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 611720209531818
 						}
 					],
@@ -266,12 +277,22 @@
 							"parameters": {
 								"key": 87
 							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Player",
+							"sid": 928421106347993,
+							"parameters": {
+								"instance-variable": "waterUses",
+								"comparison": 4,
+								"value": "0"
+							}
 						}
 					],
 					"actions": [
 						{
 							"customAction": "UseWater",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 322304512853657
 						}
 					],
@@ -313,17 +334,17 @@
 				{
 					"id": "set-text",
 					"objectClass": "HUD",
-					"sid": 830355462799048,
+					"sid": 736219276224913,
 					"parameters": {
-						"text": "\"Crops Harvested: \" & Player.cropsHarvested & newline"
+						"text": "\"🌽 Crops Harvested: \" & Player.cropsHarvested & newline"
 					}
 				},
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 532839836921419,
+					"sid": 726515236109096,
 					"parameters": {
-						"text": "\"Day: \" & Calendar.Day & newline"
+						"text": "\"🗓 Day: \" & Calendar.Day & newline"
 					}
 				},
 				{
@@ -338,17 +359,33 @@
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 750197923700598,
+					"sid": 587439963739205,
 					"parameters": {
-						"text": "\"Tool Uses: \" & Player.toolUses & newline"
+						"text": "\"⛏ Tool Uses: \" & Player.toolUses & newline"
 					}
 				},
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 611686469939449,
+					"sid": 942323784160266,
 					"parameters": {
-						"text": "\"Hand Uses: \" & Player.handUses & newline"
+						"text": "\"🖐 Hand Uses: \" & Player.handUses & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 794175978984081,
+					"parameters": {
+						"text": "\"🚿 Water Uses: \" & Player.waterUses & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 248375809926745,
+					"parameters": {
+						"text": "\"💰 Money: $\" & floor(Player.money) & newline"
 					}
 				}
 			],
@@ -362,7 +399,7 @@
 							"objectClass": "System",
 							"sid": 742294659514455,
 							"parameters": {
-								"object": "Tile"
+								"object": "Plot"
 							}
 						}
 					],
@@ -374,7 +411,7 @@
 							"conditions": [
 								{
 									"id": "is-boolean-instance-variable-set",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 593589882610667,
 									"parameters": {
 										"instance-variable": "watered"
@@ -384,7 +421,7 @@
 							"actions": [
 								{
 									"id": "set-default-color",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 877217044045623,
 									"parameters": {
 										"color": "rgbEx(70, 70, 100)"
@@ -405,7 +442,7 @@
 							"actions": [
 								{
 									"id": "set-default-color",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 387773563291041,
 									"parameters": {
 										"color": "rgbEx(100, 100, 100)"
@@ -473,12 +510,12 @@
 							"objectClass": "System",
 							"sid": 868064360796122,
 							"parameters": {
-								"object": "Tile"
+								"object": "Plot"
 							}
 						},
 						{
 							"id": "is-animation-playing",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 233783775055619,
 							"parameters": {
 								"animation": "\"Seeded\""
@@ -486,7 +523,7 @@
 						},
 						{
 							"id": "is-boolean-instance-variable-set",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 747723781707345,
 							"parameters": {
 								"instance-variable": "watered"
@@ -500,7 +537,7 @@
 						},
 						{
 							"id": "set-animation",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 528190847644291,
 							"parameters": {
 								"animation": "choose(\"Tomato\", \"Corn\")",
@@ -518,14 +555,14 @@
 							"objectClass": "System",
 							"sid": 387846236687955,
 							"parameters": {
-								"object": "Tile"
+								"object": "Plot"
 							}
 						}
 					],
 					"actions": [
 						{
 							"id": "set-boolean-instvar",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 134600076977083,
 							"parameters": {
 								"instance-variable": "watered",
@@ -558,6 +595,15 @@
 							"sid": 983082814297465,
 							"parameters": {
 								"instance-variable": "handUses",
+								"value": "floor(random(3)) + 1"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 996336394186967,
+							"parameters": {
+								"instance-variable": "waterUses",
 								"value": "floor(random(3)) + 1"
 							}
 						},
@@ -609,7 +655,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseTool",
-			"objectClass": "Tile",
+			"objectClass": "Plot",
 			"functionDescription": "Use a Tool action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -626,20 +672,10 @@
 					"conditions": [
 						{
 							"id": "is-animation-playing",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 980081359034011,
 							"parameters": {
 								"animation": "\"Dirt\""
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 233949342195192,
-							"parameters": {
-								"instance-variable": "toolUses",
-								"comparison": 4,
-								"value": "0"
 							}
 						}
 					],
@@ -655,7 +691,7 @@
 						},
 						{
 							"id": "set-animation",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 940551327463447,
 							"parameters": {
 								"animation": "\"Tilled\"",
@@ -675,20 +711,10 @@
 						},
 						{
 							"id": "is-animation-playing",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 193276261037645,
 							"parameters": {
 								"animation": "\"Rock\""
-							}
-						},
-						{
-							"id": "compare-instance-variable",
-							"objectClass": "Player",
-							"sid": 632134255545315,
-							"parameters": {
-								"instance-variable": "toolUses",
-								"comparison": 4,
-								"value": "0"
 							}
 						}
 					],
@@ -704,7 +730,7 @@
 						},
 						{
 							"id": "set-animation",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 539903317025656,
 							"parameters": {
 								"animation": "\"Dirt\"",
@@ -719,7 +745,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseHand",
-			"objectClass": "Tile",
+			"objectClass": "Plot",
 			"functionDescription": "Use a Hand action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -736,7 +762,7 @@
 					"conditions": [
 						{
 							"id": "is-animation-playing",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 959692631333512,
 							"parameters": {
 								"animation": "\"Tilled\""
@@ -755,7 +781,7 @@
 						},
 						{
 							"id": "set-animation",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 468949939170440,
 							"parameters": {
 								"animation": "\"Seeded\"",
@@ -782,7 +808,7 @@
 							"conditions": [
 								{
 									"id": "is-animation-playing",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 225063790200137,
 									"parameters": {
 										"animation": "\"Corn\""
@@ -790,7 +816,7 @@
 								},
 								{
 									"id": "is-animation-playing",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 210627727811355,
 									"parameters": {
 										"animation": "\"Tomato\""
@@ -809,7 +835,7 @@
 								},
 								{
 									"id": "set-animation",
-									"objectClass": "Tile",
+									"objectClass": "Plot",
 									"sid": 321883377289899,
 									"parameters": {
 										"animation": "\"Dirt\"",
@@ -824,6 +850,15 @@
 										"instance-variable": "cropsHarvested",
 										"value": "1"
 									}
+								},
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 463765729213658,
+									"parameters": {
+										"instance-variable": "money",
+										"value": "50"
+									}
 								}
 							],
 							"sid": 232640093475935,
@@ -836,7 +871,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseWater",
-			"objectClass": "Tile",
+			"objectClass": "Plot",
 			"functionDescription": "Use a Water action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -853,7 +888,7 @@
 					"conditions": [
 						{
 							"id": "is-animation-playing",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 287223909543768,
 							"parameters": {
 								"animation": "\"Seeded\""
@@ -861,7 +896,7 @@
 						},
 						{
 							"id": "is-boolean-instance-variable-set",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 462885352507808,
 							"parameters": {
 								"instance-variable": "watered"
@@ -871,8 +906,17 @@
 					],
 					"actions": [
 						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 127864959339480,
+							"parameters": {
+								"instance-variable": "waterUses",
+								"value": "1"
+							}
+						},
+						{
 							"id": "set-boolean-instvar",
-							"objectClass": "Tile",
+							"objectClass": "Plot",
 							"sid": 816240659599033,
 							"parameters": {
 								"instance-variable": "watered",

@@ -20,7 +20,8 @@
 						"cropsHarvested": 0,
 						"toolUses": 0,
 						"handUses": 0,
-						"waterUses": 0
+						"waterUses": 0,
+						"money": 0
 					},
 					"behaviors": {
 						"ScrollTo": {

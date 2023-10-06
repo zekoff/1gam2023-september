@@ -31,6 +31,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 796747002276667
+		},
+		{
+			"name": "money",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 970811703760192
 		}
 	],
 	"behaviorTypes": [
