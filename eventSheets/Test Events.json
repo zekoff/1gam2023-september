@@ -43,16 +43,6 @@
 			"actions": [
 				{
 					"id": "set-size",
-					"objectClass": "Farm",
-					"sid": 396514682093797,
-					"parameters": {
-						"width": "FARM_WIDTH",
-						"height": "FARM_HEIGHT",
-						"depth": "1"
-					}
-				},
-				{
-					"id": "set-size",
 					"objectClass": "Player",
 					"sid": 198268928509811,
 					"parameters": {
@@ -119,16 +109,6 @@
 							],
 							"actions": [
 								{
-									"id": "set-at-xy",
-									"objectClass": "Farm",
-									"sid": 241542234108373,
-									"parameters": {
-										"x": "loopindex(\"x\")",
-										"y": "loopindex(\"y\")",
-										"value": "choose(\"Dirt\", \"Rock\")"
-									}
-								},
-								{
 									"id": "create-object",
 									"objectClass": "System",
 									"sid": 622673508765177,
@@ -153,10 +133,9 @@
 								{
 									"id": "set-animation",
 									"objectClass": "Plot",
-									"sid": 611192008235284,
-									"disabled": true,
+									"sid": 211846007755135,
 									"parameters": {
-										"animation": "Farm.At(loopindex(\"x\"), loopindex(\"y\"))",
+										"animation": "choose(\"Dirt\", \"Rock\")",
 										"from": "beginning"
 									}
 								}
@@ -173,10 +152,6 @@
 							"id": "move-to-top",
 							"objectClass": "Player",
 							"sid": 970906025198946
-						},
-						{
-							"callFunction": "SyncPlotsFromFarmData",
-							"sid": 434516209441305
 						}
 					],
 					"sid": 621628255520615
@@ -339,7 +314,16 @@
 				{
 					"id": "set-text",
 					"objectClass": "HUD",
-					"sid": 736219276224913,
+					"sid": 183267980060165,
+					"parameters": {
+						"text": "\"\""
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 831911004872267,
+					"disabled": true,
 					"parameters": {
 						"text": "\"🌽 Crops Harvested: \" & Player.cropsHarvested & newline"
 					}
@@ -347,9 +331,17 @@
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 726515236109096,
+					"sid": 515132490343042,
 					"parameters": {
 						"text": "\"🗓 Day: \" & Calendar.Day & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 310671820384582,
+					"parameters": {
+						"text": "\"💰 Money: $\" & floor(Player.money) & newline"
 					}
 				},
 				{
@@ -379,15 +371,8 @@
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 248375809926745,
-					"parameters": {
-						"text": "\"💰 Money: $\" & floor(Player.money) & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
 					"sid": 299508241469394,
+					"disabled": true,
 					"parameters": {
 						"text": "\"Grid Position: \" & \nFunctions.GetGridXFromPosition(Player.X) & \"x, \" &\nFunctions.GetGridYFromPosition(Player.Y) & \"y\" & newline"
 					}
@@ -667,7 +652,16 @@
 			"functionIsAsync": false,
 			"functionParameters": [],
 			"eventType": "custom-ace-block",
-			"conditions": [],
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 793342988821414,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
 			"actions": [],
 			"sid": 735507153780233,
 			"children": [
@@ -675,14 +669,11 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-at-xy",
-							"objectClass": "Farm",
-							"sid": 415545423706395,
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 350191235863150,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"comparison": 0,
-								"value": "\"Dirt\""
+								"animation": "\"Dirt\""
 							}
 						}
 					],
@@ -697,13 +688,12 @@
 							}
 						},
 						{
-							"id": "set-at-xy",
-							"objectClass": "Farm",
-							"sid": 577876745740090,
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 657163444904819,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"value": "\"Tilled\""
+								"animation": "\"Tilled\"",
+								"from": "beginning"
 							}
 						}
 					],
@@ -718,14 +708,11 @@
 							"sid": 439452721153549
 						},
 						{
-							"id": "compare-at-xy",
-							"objectClass": "Farm",
-							"sid": 669963820636635,
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 188620547828407,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"comparison": 0,
-								"value": "\"Rock\""
+								"animation": "\"Rock\""
 							}
 						}
 					],
@@ -740,13 +727,12 @@
 							}
 						},
 						{
-							"id": "set-at-xy",
-							"objectClass": "Farm",
-							"sid": 757869097151026,
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 529829357426936,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"value": "\"Dirt\""
+								"animation": "\"Dirt\"",
+								"from": "beginning"
 							}
 						}
 					],
@@ -765,7 +751,16 @@
 			"functionIsAsync": false,
 			"functionParameters": [],
 			"eventType": "custom-ace-block",
-			"conditions": [],
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 119200021687648,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
 			"actions": [],
 			"sid": 225606866550626,
 			"children": [
@@ -773,14 +768,11 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-at-xy",
-							"objectClass": "Farm",
-							"sid": 779830277084507,
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 901422638594647,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"comparison": 0,
-								"value": "\"Tilled\""
+								"animation": "\"Tilled\""
 							}
 						}
 					],
@@ -795,13 +787,12 @@
 							}
 						},
 						{
-							"id": "set-at-xy",
-							"objectClass": "Farm",
-							"sid": 497809685529870,
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 239089463530101,
 							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"value": "\"Seeded\""
+								"animation": "\"Seeded\"",
+								"from": "beginning"
 							}
 						}
 					],
@@ -826,40 +817,16 @@
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 225063790200137,
-									"disabled": true,
 									"parameters": {
 										"animation": "\"Corn\""
-									}
-								},
-								{
-									"id": "compare-at-xy",
-									"objectClass": "Farm",
-									"sid": 186694204228544,
-									"parameters": {
-										"x": "Player.TileMovement.GridX",
-										"y": "Player.TileMovement.GridY",
-										"comparison": 0,
-										"value": "\"Corn\""
 									}
 								},
 								{
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 210627727811355,
-									"disabled": true,
 									"parameters": {
 										"animation": "\"Tomato\""
-									}
-								},
-								{
-									"id": "compare-at-xy",
-									"objectClass": "Farm",
-									"sid": 640445500472067,
-									"parameters": {
-										"x": "Player.TileMovement.GridX",
-										"y": "Player.TileMovement.GridY",
-										"comparison": 0,
-										"value": "\"Tomato\""
 									}
 								}
 							],
@@ -877,20 +844,9 @@
 									"id": "set-animation",
 									"objectClass": "Plot",
 									"sid": 321883377289899,
-									"disabled": true,
 									"parameters": {
 										"animation": "\"Dirt\"",
 										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-at-xy",
-									"objectClass": "Farm",
-									"sid": 757483212436601,
-									"parameters": {
-										"x": "Player.TileMovement.GridX",
-										"y": "Player.TileMovement.GridY",
-										"value": "\"Dirt\""
 									}
 								},
 								{
@@ -930,7 +886,16 @@
 			"functionIsAsync": false,
 			"functionParameters": [],
 			"eventType": "custom-ace-block",
-			"conditions": [],
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 671835382456896,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
 			"actions": [],
 			"sid": 745287016156068,
 			"children": [
@@ -941,20 +906,8 @@
 							"id": "is-animation-playing",
 							"objectClass": "Plot",
 							"sid": 287223909543768,
-							"disabled": true,
 							"parameters": {
 								"animation": "\"Seeded\""
-							}
-						},
-						{
-							"id": "compare-at-xy",
-							"objectClass": "Farm",
-							"sid": 662452738501166,
-							"parameters": {
-								"x": "Player.TileMovement.GridX",
-								"y": "Player.TileMovement.GridY",
-								"comparison": 0,
-								"value": "\"Seeded\""
 							}
 						},
 						{
@@ -1004,12 +957,7 @@
 					"sid": 662658300110668
 				}
 			],
-			"actions": [
-				{
-					"callFunction": "SyncPlotsFromFarmData",
-					"sid": 781809634044840
-				}
-			],
+			"actions": [],
 			"sid": 884030586991262
 		}
 	],

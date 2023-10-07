@@ -304,18 +304,7 @@
 		}
 	],
 	"sid": 728551007604383,
-	"nonworld-instances": [
-		{
-			"type": "Farm",
-			"properties": {
-				"width": 5,
-				"height": 8,
-				"depth": 1
-			},
-			"uid": 2,
-			"instanceVariables": {}
-		}
-	],
+	"nonworld-instances": [],
 	"effectTypes": [],
 	"width": 1440,
 	"height": 2560,
