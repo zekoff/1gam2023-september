@@ -138,6 +138,14 @@
 										"animation": "choose(\"Dirt\", \"Rock\")",
 										"from": "beginning"
 									}
+								},
+								{
+									"id": "set-animation-speed",
+									"objectClass": "Plot",
+									"sid": 661193949802091,
+									"parameters": {
+										"speed": "0"
+									}
 								}
 							],
 							"sid": 424971451013074
@@ -503,11 +511,11 @@
 							}
 						},
 						{
-							"id": "is-animation-playing",
-							"objectClass": "Plot",
-							"sid": 233783775055619,
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 890654209873439,
 							"parameters": {
-								"animation": "\"Seeded\""
+								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
 							}
 						},
 						{
@@ -525,12 +533,20 @@
 							"text": "TODO: grow crops"
 						},
 						{
-							"id": "set-animation",
+							"id": "add-to-instvar",
 							"objectClass": "Plot",
-							"sid": 528190847644291,
+							"sid": 819388816858747,
 							"parameters": {
-								"animation": "choose(\"Tomato\", \"Corn\")",
-								"from": "beginning"
+								"instance-variable": "growthLevel",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "Plot",
+							"sid": 354163089708917,
+							"parameters": {
+								"frame-number": "Plot.growthLevel"
 							}
 						}
 					],
@@ -572,28 +588,28 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "Player",
-							"sid": 132240852550644,
+							"sid": 185775167404613,
 							"parameters": {
 								"instance-variable": "toolUses",
-								"value": "floor(random(3)) + 1"
+								"value": "floor(random(3)) + 3"
 							}
 						},
 						{
 							"id": "set-instvar-value",
 							"objectClass": "Player",
-							"sid": 983082814297465,
+							"sid": 547570527541183,
 							"parameters": {
 								"instance-variable": "handUses",
-								"value": "floor(random(3)) + 1"
+								"value": "floor(random(3)) + 3"
 							}
 						},
 						{
 							"id": "set-instvar-value",
 							"objectClass": "Player",
-							"sid": 996336394186967,
+							"sid": 985150990152366,
 							"parameters": {
 								"instance-variable": "waterUses",
-								"value": "floor(random(3)) + 1"
+								"value": "floor(random(3)) + 3"
 							}
 						},
 						{
@@ -789,10 +805,18 @@
 						{
 							"id": "set-animation",
 							"objectClass": "Plot",
-							"sid": 239089463530101,
+							"sid": 515313076915388,
 							"parameters": {
-								"animation": "\"Seeded\"",
+								"animation": "choose(\"Corn\", \"Tomato\")",
 								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation-speed",
+							"objectClass": "Plot",
+							"sid": 794490570520888,
+							"parameters": {
+								"speed": "0"
 							}
 						}
 					],
@@ -805,6 +829,24 @@
 							"id": "else",
 							"objectClass": "System",
 							"sid": 945101520461719
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 149087304279960,
+							"parameters": {
+								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Plot",
+							"sid": 371913226332779,
+							"parameters": {
+								"instance-variable": "growthLevel",
+								"comparison": 5,
+								"value": "4"
+							}
 						}
 					],
 					"actions": [],
@@ -817,6 +859,7 @@
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 225063790200137,
+									"disabled": true,
 									"parameters": {
 										"animation": "\"Corn\""
 									}
@@ -825,6 +868,7 @@
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 210627727811355,
+									"disabled": true,
 									"parameters": {
 										"animation": "\"Tomato\""
 									}
@@ -850,6 +894,15 @@
 									}
 								},
 								{
+									"id": "set-instvar-value",
+									"objectClass": "Plot",
+									"sid": 302064675318485,
+									"parameters": {
+										"instance-variable": "growthLevel",
+										"value": "0"
+									}
+								},
+								{
 									"id": "add-to-instvar",
 									"objectClass": "Player",
 									"sid": 405907745627792,
@@ -868,8 +921,7 @@
 									}
 								}
 							],
-							"sid": 232640093475935,
-							"isOrBlock": true
+							"sid": 232640093475935
 						}
 					]
 				}
@@ -906,8 +958,17 @@
 							"id": "is-animation-playing",
 							"objectClass": "Plot",
 							"sid": 287223909543768,
+							"disabled": true,
 							"parameters": {
 								"animation": "\"Seeded\""
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 514414046194483,
+							"parameters": {
+								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
 							}
 						},
 						{
