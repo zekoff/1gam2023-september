@@ -1,0 +1,144 @@
+{
+	"name": "Helper Functions",
+	"events": [
+		{
+			"functionName": "GetGridXFromPosition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "xPosition",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "X value for position in world.",
+					"sid": 510250017556414
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 823954735845844,
+					"parameters": {
+						"value": "round(xPosition / TILE_SIZE)"
+					}
+				}
+			],
+			"sid": 578587934609468
+		},
+		{
+			"functionName": "GetGridYFromPosition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "yPosition",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Y value for position in world.",
+					"sid": 475717544272592
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 147127925240928,
+					"parameters": {
+						"value": "round(yPosition / TILE_SIZE)"
+					}
+				}
+			],
+			"sid": 147667068574706
+		},
+		{
+			"functionName": "SyncPlotsFromFarmData",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 292331538514817,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "xGrid",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 146970934228913
+				},
+				{
+					"eventType": "variable",
+					"name": "yGrid",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 160080942698735
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 514462518811862,
+							"parameters": {
+								"object": "Plot"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 905757936833124,
+							"parameters": {
+								"variable": "xGrid",
+								"value": "Functions.GetGridXFromPosition(Plot.X)"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 190669322942641,
+							"parameters": {
+								"variable": "yGrid",
+								"value": "Functions.GetGridYFromPosition(Plot.Y)"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 866457919201378,
+							"parameters": {
+								"animation": "Farm.At(xGrid, yGrid)",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 971400573216023
+				}
+			]
+		}
+	],
+	"sid": 793700047695969
+}

@@ -154,6 +154,7 @@
 									"id": "set-animation",
 									"objectClass": "Plot",
 									"sid": 611192008235284,
+									"disabled": true,
 									"parameters": {
 										"animation": "Farm.At(loopindex(\"x\"), loopindex(\"y\"))",
 										"from": "beginning"
@@ -172,6 +173,10 @@
 							"id": "move-to-top",
 							"objectClass": "Player",
 							"sid": 970906025198946
+						},
+						{
+							"callFunction": "SyncPlotsFromFarmData",
+							"sid": 434516209441305
 						}
 					],
 					"sid": 621628255520615
@@ -230,8 +235,8 @@
 					"actions": [
 						{
 							"customAction": "UseTool",
-							"objectClass": "Plot",
-							"sid": 285803362250789
+							"objectClass": "Player",
+							"sid": 294354421669932
 						}
 					],
 					"sid": 397987616591864
@@ -261,8 +266,8 @@
 					"actions": [
 						{
 							"customAction": "UseHand",
-							"objectClass": "Plot",
-							"sid": 611720209531818
+							"objectClass": "Player",
+							"sid": 211192546957982
 						}
 					],
 					"sid": 447654276081347
@@ -292,8 +297,8 @@
 					"actions": [
 						{
 							"customAction": "UseWater",
-							"objectClass": "Plot",
-							"sid": 322304512853657
+							"objectClass": "Player",
+							"sid": 507757007910952
 						}
 					],
 					"sid": 947593703960731
@@ -350,15 +355,6 @@
 				{
 					"id": "append-text",
 					"objectClass": "HUD",
-					"sid": 167134189354111,
-					"disabled": true,
-					"parameters": {
-						"text": "\"MouseX: \" & round(Mouse.X) & \", MouseY: \" & round(Mouse.Y) & newline"
-					}
-				},
-				{
-					"id": "append-text",
-					"objectClass": "HUD",
 					"sid": 587439963739205,
 					"parameters": {
 						"text": "\"⛏ Tool Uses: \" & Player.toolUses & newline"
@@ -386,6 +382,14 @@
 					"sid": 248375809926745,
 					"parameters": {
 						"text": "\"💰 Money: $\" & floor(Player.money) & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 299508241469394,
+					"parameters": {
+						"text": "\"Grid Position: \" & \nFunctions.GetGridXFromPosition(Player.X) & \"x, \" &\nFunctions.GetGridYFromPosition(Player.Y) & \"y\" & newline"
 					}
 				}
 			],
@@ -655,7 +659,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseTool",
-			"objectClass": "Plot",
+			"objectClass": "Player",
 			"functionDescription": "Use a Tool action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -671,11 +675,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-animation-playing",
-							"objectClass": "Plot",
-							"sid": 980081359034011,
+							"id": "compare-at-xy",
+							"objectClass": "Farm",
+							"sid": 415545423706395,
 							"parameters": {
-								"animation": "\"Dirt\""
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"comparison": 0,
+								"value": "\"Dirt\""
 							}
 						}
 					],
@@ -690,12 +697,13 @@
 							}
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "Plot",
-							"sid": 940551327463447,
+							"id": "set-at-xy",
+							"objectClass": "Farm",
+							"sid": 577876745740090,
 							"parameters": {
-								"animation": "\"Tilled\"",
-								"from": "beginning"
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"value": "\"Tilled\""
 							}
 						}
 					],
@@ -710,11 +718,14 @@
 							"sid": 439452721153549
 						},
 						{
-							"id": "is-animation-playing",
-							"objectClass": "Plot",
-							"sid": 193276261037645,
+							"id": "compare-at-xy",
+							"objectClass": "Farm",
+							"sid": 669963820636635,
 							"parameters": {
-								"animation": "\"Rock\""
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"comparison": 0,
+								"value": "\"Rock\""
 							}
 						}
 					],
@@ -729,12 +740,13 @@
 							}
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "Plot",
-							"sid": 539903317025656,
+							"id": "set-at-xy",
+							"objectClass": "Farm",
+							"sid": 757869097151026,
 							"parameters": {
-								"animation": "\"Dirt\"",
-								"from": "beginning"
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"value": "\"Dirt\""
 							}
 						}
 					],
@@ -745,7 +757,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseHand",
-			"objectClass": "Plot",
+			"objectClass": "Player",
 			"functionDescription": "Use a Hand action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -761,11 +773,14 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-animation-playing",
-							"objectClass": "Plot",
-							"sid": 959692631333512,
+							"id": "compare-at-xy",
+							"objectClass": "Farm",
+							"sid": 779830277084507,
 							"parameters": {
-								"animation": "\"Tilled\""
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"comparison": 0,
+								"value": "\"Tilled\""
 							}
 						}
 					],
@@ -780,12 +795,13 @@
 							}
 						},
 						{
-							"id": "set-animation",
-							"objectClass": "Plot",
-							"sid": 468949939170440,
+							"id": "set-at-xy",
+							"objectClass": "Farm",
+							"sid": 497809685529870,
 							"parameters": {
-								"animation": "\"Seeded\"",
-								"from": "beginning"
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"value": "\"Seeded\""
 							}
 						}
 					],
@@ -810,16 +826,40 @@
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 225063790200137,
+									"disabled": true,
 									"parameters": {
 										"animation": "\"Corn\""
+									}
+								},
+								{
+									"id": "compare-at-xy",
+									"objectClass": "Farm",
+									"sid": 186694204228544,
+									"parameters": {
+										"x": "Player.TileMovement.GridX",
+										"y": "Player.TileMovement.GridY",
+										"comparison": 0,
+										"value": "\"Corn\""
 									}
 								},
 								{
 									"id": "is-animation-playing",
 									"objectClass": "Plot",
 									"sid": 210627727811355,
+									"disabled": true,
 									"parameters": {
 										"animation": "\"Tomato\""
+									}
+								},
+								{
+									"id": "compare-at-xy",
+									"objectClass": "Farm",
+									"sid": 640445500472067,
+									"parameters": {
+										"x": "Player.TileMovement.GridX",
+										"y": "Player.TileMovement.GridY",
+										"comparison": 0,
+										"value": "\"Tomato\""
 									}
 								}
 							],
@@ -837,9 +877,20 @@
 									"id": "set-animation",
 									"objectClass": "Plot",
 									"sid": 321883377289899,
+									"disabled": true,
 									"parameters": {
 										"animation": "\"Dirt\"",
 										"from": "beginning"
+									}
+								},
+								{
+									"id": "set-at-xy",
+									"objectClass": "Farm",
+									"sid": 757483212436601,
+									"parameters": {
+										"x": "Player.TileMovement.GridX",
+										"y": "Player.TileMovement.GridY",
+										"value": "\"Dirt\""
 									}
 								},
 								{
@@ -871,7 +922,7 @@
 		{
 			"aceType": "action",
 			"aceName": "UseWater",
-			"objectClass": "Plot",
+			"objectClass": "Player",
 			"functionDescription": "Use a Water action on a tile.",
 			"functionCategory": "",
 			"functionReturnType": "none",
@@ -890,8 +941,20 @@
 							"id": "is-animation-playing",
 							"objectClass": "Plot",
 							"sid": 287223909543768,
+							"disabled": true,
 							"parameters": {
 								"animation": "\"Seeded\""
+							}
+						},
+						{
+							"id": "compare-at-xy",
+							"objectClass": "Farm",
+							"sid": 662452738501166,
+							"parameters": {
+								"x": "Player.TileMovement.GridX",
+								"y": "Player.TileMovement.GridY",
+								"comparison": 0,
+								"value": "\"Seeded\""
 							}
 						},
 						{
@@ -927,6 +990,27 @@
 					"sid": 637667459231527
 				}
 			]
+		},
+		{
+			"eventType": "comment",
+			"text": "End-of-tick cleanup actions."
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 662658300110668
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "SyncPlotsFromFarmData",
+					"sid": 781809634044840
+				}
+			],
+			"sid": 884030586991262
 		}
 	],
 	"sid": 846063937609139

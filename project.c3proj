@@ -92,7 +92,9 @@
 	},
 	"eventSheets": {
 		"items": [
-			"Test Events"
+			"Test Events",
+			"Helper Functions",
+			"Constants"
 		],
 		"subfolders": []
 	},
