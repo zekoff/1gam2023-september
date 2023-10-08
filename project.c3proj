@@ -65,7 +65,8 @@
 			"HUD",
 			"Mouse",
 			"Calendar",
-			"Mask"
+			"Mask",
+			"Die"
 		],
 		"subfolders": []
 	},
