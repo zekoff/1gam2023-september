@@ -81,7 +81,8 @@
 			"Calendar",
 			"Mask",
 			"Die",
-			"Touch"
+			"Touch",
+			"AdvanceButton"
 		],
 		"subfolders": []
 	},
@@ -101,7 +102,7 @@
 	"eventSheets": {
 		"items": [
 			"Test Events",
-			"Helper Functions",
+			"Functions and Custom Actions",
 			"Constants"
 		],
 		"subfolders": []

@@ -1,0 +1,1039 @@
+{
+	"name": "Functions and Custom Actions",
+	"events": [
+		{
+			"functionName": "GetGridXFromPosition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "xPosition",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "X value for position in world.",
+					"sid": 510250017556414
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 823954735845844,
+					"parameters": {
+						"value": "round(xPosition / TILE_SIZE)"
+					}
+				}
+			],
+			"sid": 578587934609468
+		},
+		{
+			"functionName": "GetGridYFromPosition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "number",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "yPosition",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "Y value for position in world.",
+					"sid": 475717544272592
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 147127925240928,
+					"parameters": {
+						"value": "round(yPosition / TILE_SIZE)"
+					}
+				}
+			],
+			"sid": 147667068574706
+		},
+		{
+			"aceType": "action",
+			"aceName": "BeginDay",
+			"objectClass": "Calendar",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": true,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 245691856099435,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 522633011383862,
+							"parameters": {
+								"object": "Plot"
+							}
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 676263451504642,
+							"parameters": {
+								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Plot",
+							"sid": 985615556379463,
+							"parameters": {
+								"instance-variable": "watered"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "TODO: grow crops"
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Plot",
+							"sid": 601526892866254,
+							"parameters": {
+								"instance-variable": "growthLevel",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "Plot",
+							"sid": 696299394691433,
+							"parameters": {
+								"frame-number": "Plot.growthLevel"
+							}
+						}
+					],
+					"sid": 190256127411331
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 184322461562077,
+							"parameters": {
+								"object": "Plot"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Plot",
+							"sid": 781760112498894,
+							"parameters": {
+								"instance-variable": "watered",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 590080715422585
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "TODO: roll dice"
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 280455031056964,
+							"disabled": true,
+							"parameters": {
+								"instance-variable": "toolUses",
+								"value": "floor(random(3)) + 3"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 589842780267014,
+							"disabled": true,
+							"parameters": {
+								"instance-variable": "handUses",
+								"value": "floor(random(3)) + 3"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Player",
+							"sid": 790069731199708,
+							"disabled": true,
+							"parameters": {
+								"instance-variable": "waterUses",
+								"value": "floor(random(3)) + 3"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Calendar",
+							"sid": 537658115873421,
+							"parameters": {
+								"instance-variable": "Day",
+								"value": "1"
+							}
+						},
+						{
+							"id": "tween-one-property",
+							"objectClass": "Mask",
+							"sid": 450747046546349,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "offsetOpacity",
+								"end-value": "0",
+								"time": "1",
+								"ease": "default",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 748080858437430
+						},
+						{
+							"id": "set-ignoring-input",
+							"objectClass": "Player",
+							"sid": 470343142422528,
+							"disabled": true,
+							"behaviorType": "TileMovement",
+							"parameters": {
+								"input": "stop-ignoring"
+							}
+						}
+					],
+					"sid": 398524712000790
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "EndDay",
+			"objectClass": "Calendar",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": true,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-ignoring-input",
+					"objectClass": "Player",
+					"sid": 626289790081654,
+					"disabled": true,
+					"behaviorType": "TileMovement",
+					"parameters": {
+						"input": "start-ignoring"
+					}
+				},
+				{
+					"id": "tween-one-property",
+					"objectClass": "Mask",
+					"sid": 207878536158107,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"\"",
+						"property": "offsetOpacity",
+						"end-value": "100",
+						"time": "1",
+						"ease": "default",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 829754329841360
+				}
+			],
+			"sid": 256018840984521
+		},
+		{
+			"aceType": "action",
+			"aceName": "UseTool",
+			"objectClass": "Player",
+			"functionDescription": "Use a Tool action on a tile.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 346595124741059,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 224754095962382,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 235647037000843,
+							"parameters": {
+								"animation": "\"Dirt\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 893115679375564,
+							"parameters": {
+								"instance-variable": "toolUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 910848102006430,
+							"parameters": {
+								"animation": "\"Tilled\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 465577629607710
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 393934219349194
+						},
+						{
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 964217043981247,
+							"parameters": {
+								"animation": "\"Rock\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 319734951433403,
+							"parameters": {
+								"instance-variable": "toolUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 991758708752398,
+							"parameters": {
+								"animation": "\"Dirt\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 496452108228470
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "UseHand",
+			"objectClass": "Player",
+			"functionDescription": "Use a Hand action on a tile.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 516729184614305,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 399756253127605,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-animation-playing",
+							"objectClass": "Plot",
+							"sid": 148005365903938,
+							"parameters": {
+								"animation": "\"Tilled\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 682541280680638,
+							"parameters": {
+								"instance-variable": "handUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 169090150316562,
+							"parameters": {
+								"animation": "choose(\"Corn\", \"Tomato\")",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-animation-speed",
+							"objectClass": "Plot",
+							"sid": 720130016347822,
+							"parameters": {
+								"speed": "0"
+							}
+						}
+					],
+					"sid": 764674719333998
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 881161770659110
+						},
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 502839642776246,
+							"parameters": {
+								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Plot",
+							"sid": 945624824558822,
+							"parameters": {
+								"instance-variable": "growthLevel",
+								"comparison": 5,
+								"value": "4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 896215795108068,
+							"parameters": {
+								"instance-variable": "handUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 692798071070634,
+							"parameters": {
+								"animation": "\"Dirt\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Plot",
+							"sid": 124361353159087,
+							"parameters": {
+								"instance-variable": "growthLevel",
+								"value": "0"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 200323994091552,
+							"parameters": {
+								"instance-variable": "cropsHarvested",
+								"value": "1"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 727931191332261,
+							"parameters": {
+								"instance-variable": "money",
+								"value": "50"
+							}
+						}
+					],
+					"sid": 617301210994659
+				}
+			]
+		},
+		{
+			"aceType": "action",
+			"aceName": "UseWater",
+			"objectClass": "Player",
+			"functionDescription": "Use a Water action on a tile.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "custom-ace-block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Plot",
+					"sid": 466950298190224,
+					"parameters": {
+						"object": "Player"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 146903375257255,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "evaluate-expression",
+							"objectClass": "System",
+							"sid": 886033130832804,
+							"parameters": {
+								"value": "Plot.AnimationName = \"Corn\" |\nPlot.AnimationName = \"Tomato\" |\nPlot.AnimationName = \"Grass\"\n"
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "Plot",
+							"sid": 178886693879778,
+							"parameters": {
+								"instance-variable": "watered"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 580049608240069,
+							"parameters": {
+								"instance-variable": "waterUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Plot",
+							"sid": 796824891267588,
+							"parameters": {
+								"instance-variable": "watered",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 920619054691427
+				}
+			]
+		},
+		{
+			"functionName": "InitDicePhase",
+			"functionDescription": "Activate and prepare for dice phase by creating correct number of dice and setting groups.",
+			"functionCategory": "Dice",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-layer-opacity",
+					"objectClass": "System",
+					"sid": 496149590502311,
+					"parameters": {
+						"layer": "\"Dice\"",
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Player",
+					"sid": 784806043875935,
+					"parameters": {
+						"instance-variable": "toolUses",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Player",
+					"sid": 112707540854164,
+					"parameters": {
+						"instance-variable": "handUses",
+						"value": "0"
+					}
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "Player",
+					"sid": 857604864221588,
+					"parameters": {
+						"instance-variable": "waterUses",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 940129627220730,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "repeat",
+							"objectClass": "System",
+							"sid": 866296475574437,
+							"parameters": {
+								"count": "Player.diceMaximum"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 612814043477124,
+							"parameters": {
+								"object-to-create": "Die",
+								"layer": "\"Dice\"",
+								"x": "0",
+								"y": "0",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "Die",
+							"sid": 933922944621950,
+							"parameters": {
+								"width": "100",
+								"height": "100"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "Die",
+							"sid": 113181923785841,
+							"parameters": {
+								"frame-number": "choose(\"Tool\", \"Hand\", \"Water\")"
+							}
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Die",
+							"sid": 721822545968003,
+							"parameters": {
+								"instance-variable": "locked",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Die",
+							"sid": 591942133124530,
+							"parameters": {
+								"animation": "choose(\"Tool\", \"Hand\", \"Water\")",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "Die",
+							"sid": 468424703360088,
+							"parameters": {
+								"x": "random(ViewportWidth(\"Dice\")) / 2 + ViewportWidth(\"Dice\") / 4",
+								"y": "random(ViewportHeight(\"Dice\")) / 2 + ViewportHeight(\"Dice\") / 4"
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "Die",
+							"sid": 615886473821488,
+							"parameters": {
+								"angle": "random(-20, 20)"
+							}
+						}
+					],
+					"sid": 297254726701467
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-all",
+							"objectClass": "System",
+							"sid": 982566035136712,
+							"parameters": {
+								"object": "Die"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "RollDice",
+							"sid": 915148771485561
+						}
+					],
+					"sid": 670614611647888
+				}
+			]
+		},
+		{
+			"functionName": "RollDice",
+			"functionDescription": "Roll any dice that are not locked.",
+			"functionCategory": "Dice",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "for-each",
+					"objectClass": "System",
+					"sid": 295837516007982,
+					"parameters": {
+						"object": "Die"
+					}
+				},
+				{
+					"id": "is-boolean-instance-variable-set",
+					"objectClass": "Die",
+					"sid": 812360860779920,
+					"parameters": {
+						"instance-variable": "locked"
+					},
+					"isInverted": true
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Die",
+					"sid": 531376044096882,
+					"parameters": {
+						"animation": "choose(\"Tool\", \"Hand\", \"Water\")",
+						"from": "beginning"
+					}
+				},
+				{
+					"id": "set-position",
+					"objectClass": "Die",
+					"sid": 765184203415778,
+					"parameters": {
+						"x": "random(ViewportWidth(\"Dice\")) / 2 + ViewportWidth(\"Dice\") / 4",
+						"y": "random(ViewportHeight(\"Dice\")) / 2 + ViewportHeight(\"Dice\") / 4"
+					}
+				},
+				{
+					"id": "set-angle",
+					"objectClass": "Die",
+					"sid": 760452776862110,
+					"parameters": {
+						"angle": "random(-20, 20)"
+					}
+				}
+			],
+			"sid": 957997085286136
+		},
+		{
+			"functionName": "ConcludeDicePhase",
+			"functionDescription": "Convert dice rolls to player actions, clean up dice, activate groups.",
+			"functionCategory": "Dice",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-layer-opacity",
+					"objectClass": "System",
+					"sid": 977697904342478,
+					"parameters": {
+						"layer": "\"Dice\"",
+						"opacity": "70"
+					}
+				}
+			],
+			"sid": 464857456335307,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for-each",
+							"objectClass": "System",
+							"sid": 634673826819935,
+							"parameters": {
+								"object": "Die"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "Die",
+							"sid": 379852283522501,
+							"parameters": {
+								"instance-variable": "locked",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 359444669875467,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "Die",
+									"sid": 867044180290791,
+									"parameters": {
+										"animation": "\"Tool\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 769321541477898,
+									"parameters": {
+										"instance-variable": "toolUses",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 837032856625291
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "Die",
+									"sid": 258760069592439,
+									"parameters": {
+										"animation": "\"Hand\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 983474202246797,
+									"parameters": {
+										"instance-variable": "handUses",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 414724252483021
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "Die",
+									"sid": 895603659546912,
+									"parameters": {
+										"animation": "\"Water\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "add-to-instvar",
+									"objectClass": "Player",
+									"sid": 983856210921238,
+									"parameters": {
+										"instance-variable": "waterUses",
+										"value": "1"
+									}
+								}
+							],
+							"sid": 865697977577428
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Die",
+							"sid": 667704797149113,
+							"disabled": true
+						}
+					],
+					"sid": 370409206161544
+				}
+			]
+		},
+		{
+			"functionName": "InitActionPhase",
+			"functionDescription": "Set up action phase.",
+			"functionCategory": "Action",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-enabled",
+					"objectClass": "Player",
+					"sid": 391699670911593,
+					"behaviorType": "TileMovement",
+					"parameters": {
+						"state": "enabled"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Player",
+					"sid": 363032643971427,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-layer-opacity",
+					"objectClass": "System",
+					"sid": 648308035746706,
+					"parameters": {
+						"layer": "\"Farm\"",
+						"opacity": "100"
+					}
+				}
+			],
+			"sid": 647053868477800
+		},
+		{
+			"functionName": "ConcludeActionPhase",
+			"functionDescription": "Conclude and deactivate action phase.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "Player",
+					"sid": 203315167848552,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-enabled",
+					"objectClass": "Player",
+					"sid": 760685453440444,
+					"behaviorType": "TileMovement",
+					"parameters": {
+						"state": "disabled"
+					}
+				},
+				{
+					"id": "set-layer-opacity",
+					"objectClass": "System",
+					"sid": 360261367365775,
+					"parameters": {
+						"layer": "\"Farm\"",
+						"opacity": "70"
+					}
+				},
+				{
+					"id": "destroy",
+					"objectClass": "Die",
+					"sid": 561935298290319
+				}
+			],
+			"sid": 154202557335865
+		}
+	],
+	"sid": 793700047695969
+}

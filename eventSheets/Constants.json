@@ -30,6 +30,26 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 710663718353940
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_STATE_DICE_PHASE",
+			"type": "string",
+			"initialValue": "DICE_PHASE",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 266934434923541
+		},
+		{
+			"eventType": "variable",
+			"name": "GAME_STATE_ACTION_PHASE",
+			"type": "string",
+			"initialValue": "ACTION_PHASE",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 400231032216901
 		}
 	],
 	"sid": 944405234568510

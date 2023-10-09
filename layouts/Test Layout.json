@@ -225,7 +225,7 @@
 					"instanceVariables": {
 						"Season": "Spring",
 						"Year": 1,
-						"Day": 1
+						"Day": 0
 					},
 					"behaviors": {},
 					"world": {
@@ -235,6 +235,35 @@
 						"height": 250,
 						"originX": 0.5,
 						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "AdvanceButton",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 10,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 580,
+						"y": 1154,
+						"width": 239,
+						"height": 237,
+						"originX": 0.4769874476987448,
+						"originY": 0.5147679324894515,
 						"color": [
 							1,
 							1,
