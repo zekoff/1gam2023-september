@@ -5,7 +5,7 @@
 			"eventType": "variable",
 			"name": "FARM_HEIGHT",
 			"type": "number",
-			"initialValue": "7",
+			"initialValue": "8",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -15,7 +15,7 @@
 			"eventType": "variable",
 			"name": "FARM_WIDTH",
 			"type": "number",
-			"initialValue": "4",
+			"initialValue": "5",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -25,7 +25,7 @@
 			"eventType": "variable",
 			"name": "TILE_SIZE",
 			"type": "number",
-			"initialValue": "130",
+			"initialValue": "120",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -374,6 +374,14 @@
 					"sid": 794175978984081,
 					"parameters": {
 						"text": "\"🚿 Water Uses: \" & Player.waterUses & newline"
+					}
+				},
+				{
+					"id": "append-text",
+					"objectClass": "HUD",
+					"sid": 679943178020319,
+					"parameters": {
+						"text": "\"🔋 Energy: \" & Player.energy & newline"
 					}
 				},
 				{
@@ -849,81 +857,54 @@
 							}
 						}
 					],
-					"actions": [],
-					"sid": 776651791592302,
-					"children": [
+					"actions": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "is-animation-playing",
-									"objectClass": "Plot",
-									"sid": 225063790200137,
-									"disabled": true,
-									"parameters": {
-										"animation": "\"Corn\""
-									}
-								},
-								{
-									"id": "is-animation-playing",
-									"objectClass": "Plot",
-									"sid": 210627727811355,
-									"disabled": true,
-									"parameters": {
-										"animation": "\"Tomato\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "subtract-from-instvar",
-									"objectClass": "Player",
-									"sid": 353545739476814,
-									"parameters": {
-										"instance-variable": "handUses",
-										"value": "1"
-									}
-								},
-								{
-									"id": "set-animation",
-									"objectClass": "Plot",
-									"sid": 321883377289899,
-									"parameters": {
-										"animation": "\"Dirt\"",
-										"from": "beginning"
-									}
-								},
-								{
-									"id": "set-instvar-value",
-									"objectClass": "Plot",
-									"sid": 302064675318485,
-									"parameters": {
-										"instance-variable": "growthLevel",
-										"value": "0"
-									}
-								},
-								{
-									"id": "add-to-instvar",
-									"objectClass": "Player",
-									"sid": 405907745627792,
-									"parameters": {
-										"instance-variable": "cropsHarvested",
-										"value": "1"
-									}
-								},
-								{
-									"id": "add-to-instvar",
-									"objectClass": "Player",
-									"sid": 463765729213658,
-									"parameters": {
-										"instance-variable": "money",
-										"value": "50"
-									}
-								}
-							],
-							"sid": 232640093475935
+							"id": "subtract-from-instvar",
+							"objectClass": "Player",
+							"sid": 739331446701527,
+							"parameters": {
+								"instance-variable": "handUses",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Plot",
+							"sid": 586106522497769,
+							"parameters": {
+								"animation": "\"Dirt\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Plot",
+							"sid": 273105750278194,
+							"parameters": {
+								"instance-variable": "growthLevel",
+								"value": "0"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 893036851941498,
+							"parameters": {
+								"instance-variable": "cropsHarvested",
+								"value": "1"
+							}
+						},
+						{
+							"id": "add-to-instvar",
+							"objectClass": "Player",
+							"sid": 255167745704942,
+							"parameters": {
+								"instance-variable": "money",
+								"value": "50"
+							}
 						}
-					]
+					],
+					"sid": 776651791592302
 				}
 			]
 		},
@@ -955,20 +936,11 @@
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "is-animation-playing",
-							"objectClass": "Plot",
-							"sid": 287223909543768,
-							"disabled": true,
-							"parameters": {
-								"animation": "\"Seeded\""
-							}
-						},
-						{
 							"id": "evaluate-expression",
 							"objectClass": "System",
-							"sid": 514414046194483,
+							"sid": 801983114968298,
 							"parameters": {
-								"value": "Plot.AnimationName = \"Corn\" | Plot.AnimationName = \"Tomato\""
+								"value": "Plot.AnimationName = \"Corn\" |\nPlot.AnimationName = \"Tomato\" |\nPlot.AnimationName = \"Grass\"\n"
 							}
 						},
 						{

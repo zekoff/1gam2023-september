@@ -38,6 +38,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 970811703760192
+		},
+		{
+			"name": "energy",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 698321484179811
 		}
 	],
 	"behaviorTypes": [

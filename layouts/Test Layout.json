@@ -2,7 +2,7 @@
 	"name": "Test Layout",
 	"layers": [
 		{
-			"name": "Layer 0",
+			"name": "Farm",
 			"overriden": 0,
 			"subLayers": [],
 			"instances": [
@@ -21,12 +21,13 @@
 						"toolUses": 0,
 						"handUses": 0,
 						"waterUses": 0,
-						"money": 0
+						"money": 0,
+						"energy": 100
 					},
 					"behaviors": {
 						"ScrollTo": {
 							"properties": {
-								"enabled": true
+								"enabled": false
 							}
 						},
 						"TileMovement": {
@@ -90,6 +91,69 @@
 			"global": false
 		},
 		{
+			"name": "Dice",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [
+				{
+					"type": "Die",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Blank",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 2,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 996,
+						"y": 818,
+						"width": 250,
+						"height": 250,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				}
+			],
+			"sid": 385040089522857,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				1,
+				1,
+				1,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
 			"name": "UI",
 			"overriden": 0,
 			"subLayers": [],
@@ -123,9 +187,9 @@
 					"behaviors": {},
 					"world": {
 						"x": 64,
-						"y": 926,
+						"y": 1027,
 						"width": 592,
-						"height": 327,
+						"height": 226,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -157,35 +221,6 @@
 					"world": {
 						"x": 997,
 						"y": 416,
-						"width": 250,
-						"height": 250,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
-				},
-				{
-					"type": "Die",
-					"properties": {
-						"initially-visible": true,
-						"initial-animation": "Blank",
-						"initial-frame": 0,
-						"enable-collisions": true,
-						"live-preview": false
-					},
-					"uid": 2,
-					"instanceVariables": {},
-					"behaviors": {},
-					"world": {
-						"x": 996,
-						"y": 818,
 						"width": 250,
 						"height": 250,
 						"originX": 0.5,
