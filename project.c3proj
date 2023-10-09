@@ -35,6 +35,20 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Touch",
+			"name": "Touch",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "DragnDrop",
+			"name": "Drag & Drop",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "TileMovement",
 			"name": "Tile movement",
@@ -66,7 +80,8 @@
 			"Mouse",
 			"Calendar",
 			"Mask",
-			"Die"
+			"Die",
+			"Touch"
 		],
 		"subfolders": []
 	},
@@ -86,7 +101,8 @@
 	"eventSheets": {
 		"items": [
 			"Test Events",
-			"Helper Functions"
+			"Helper Functions",
+			"Constants"
 		],
 		"subfolders": []
 	},

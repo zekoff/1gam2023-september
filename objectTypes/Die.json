@@ -3,8 +3,22 @@
 	"plugin-id": "Sprite",
 	"sid": 649931429137349,
 	"isGlobal": false,
-	"instanceVariables": [],
-	"behaviorTypes": [],
+	"instanceVariables": [
+		{
+			"name": "locked",
+			"type": "boolean",
+			"desc": "",
+			"show": true,
+			"sid": 486324645213715
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 912232061505270
+		}
+	],
 	"effectTypes": [],
 	"animations": {
 		"items": [

@@ -22,7 +22,8 @@
 						"handUses": 0,
 						"waterUses": 0,
 						"money": 0,
-						"energy": 100
+						"energy": 100,
+						"diceMaximum": 5
 					},
 					"behaviors": {
 						"ScrollTo": {
@@ -105,8 +106,17 @@
 						"live-preview": false
 					},
 					"uid": 2,
-					"instanceVariables": {},
-					"behaviors": {},
+					"instanceVariables": {
+						"locked": false
+					},
+					"behaviors": {
+						"DragDrop": {
+							"properties": {
+								"axes": "both",
+								"enabled": true
+							}
+						}
+					},
 					"world": {
 						"x": 996,
 						"y": 818,

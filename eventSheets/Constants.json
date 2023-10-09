@@ -1,0 +1,36 @@
+{
+	"name": "Constants",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "FARM_HEIGHT",
+			"type": "number",
+			"initialValue": "8",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 855676296194554
+		},
+		{
+			"eventType": "variable",
+			"name": "FARM_WIDTH",
+			"type": "number",
+			"initialValue": "5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 898561528517262
+		},
+		{
+			"eventType": "variable",
+			"name": "TILE_SIZE",
+			"type": "number",
+			"initialValue": "120",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 710663718353940
+		}
+	],
+	"sid": 944405234568510
+}

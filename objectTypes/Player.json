@@ -45,6 +45,13 @@
 			"desc": "",
 			"show": true,
 			"sid": 698321484179811
+		},
+		{
+			"name": "diceMaximum",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 498768845626624
 		}
 	],
 	"behaviorTypes": [
